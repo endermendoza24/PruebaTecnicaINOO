@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PruebaTecnicaIOON.Models;
 
 [ApiController]
@@ -13,12 +14,23 @@ public class UsuariosController : ControllerBase
     }
 
     [HttpPost]
+    [AllowAnonymous] 
     public IActionResult RegisterUser(Usuarios usuarios)
     {
-        // Aquí puedes validar los datos de entrada
+        //  Validar los datos de entrada
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        if (_dbManager.ExisteUsuarioPorCorreo(usuarios.Correo))
+        {
+            return Conflict("El correo electrónico ya está registrado");
+        }
 
         _dbManager.InsertarUsuario(usuarios);
 
-        return Ok("registrado con exito...");
+
+        return Ok("Usuario registrado exitosamente");
     }
 }

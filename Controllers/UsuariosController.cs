@@ -17,7 +17,7 @@ public class UsuariosController : ControllerBase
     {
         // Aquí puedes validar los datos de entrada
 
-        _dbManager.InsertUser(usuarios);
+        _dbManager.InsertarUsuario(usuarios);
 
         return Ok("registrado con exito...");
     }

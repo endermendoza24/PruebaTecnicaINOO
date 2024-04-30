@@ -19,7 +19,7 @@ public class DbManager
         return new SqlConnection(connectionString);
     }
 
-    public void InsertUser(Usuarios usuarios)
+    public void InsertarUsuario(Usuarios usuarios)
     {
         using (IDbConnection dbConnection = CreateConnection())
         {
@@ -28,7 +28,7 @@ public class DbManager
         }
     }
 
-    public void InsertBusiness(Negocios negocios)
+    public void InsertarNegocio(Negocios negocios)
     {
         using (IDbConnection dbConnection = CreateConnection())
         {

@@ -25,7 +25,7 @@ public class UsuariosController : ControllerBase
 
         if (_dbManager.ExisteUsuarioPorCorreo(usuarios.Correo))
         {
-            return Conflict("El correo electrónico ya está registrado");
+            return Conflict("Este correo electrónico ya está registrado");
         }
 
         _dbManager.InsertarUsuario(usuarios);
@@ -33,4 +33,5 @@ public class UsuariosController : ControllerBase
 
         return Ok("Usuario registrado exitosamente");
     }
+
 }
